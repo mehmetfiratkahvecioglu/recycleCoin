@@ -1,33 +1,28 @@
+// In App.js in a new project
+
 import * as React from "react";
-import { Text, View } from "react-native";
+import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-function HomeScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Home!</Text>
-    </View>
-  );
-}
+import SignIn from "./screens/SignIn/SignIn";
+import SignUp from "./screens/SignUp/SignUp";
+import Home from "./screens/Home/Home";
+import Recycle from "./screens/Recycle/Recycle";
 
-function SettingsScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Settings!</Text>
-    </View>
-  );
-}
+const Stack = createNativeStackNavigator();
 
-const Tab = createBottomTabNavigator();
-
-export default function App() {
+function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Settings" component={SettingsScreen} />
-      </Tab.Navigator>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Recycle" component={Recycle} />
+        <Stack.Screen name="SingUp" component={SignUp} />
+        <Stack.Screen name="SingIn" component={SignIn} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+export default App;
