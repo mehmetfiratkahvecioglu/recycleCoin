@@ -7,6 +7,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   categoriesContainer: {
+    justifyContent: "center",
+    alignItems: "center",
     margin: 5,
     backgroundColor: "white",
     padding: 10,
