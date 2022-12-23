@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
 import { View, TextInput, TouchableOpacity, Text } from "react-native";
 import styles from "./SignIn.style";
+
 import axios from "axios";
+import useStore from "../../store/useStore";
+
+const bears = useStore((state) => state.bears);
+
 const SignIn = ({ navigation }) => {
   const [name, setName] = React.useState();
   const [password, setPassword] = React.useState();

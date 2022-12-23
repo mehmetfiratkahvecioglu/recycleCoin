@@ -5,18 +5,18 @@ import { View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import SignIn from "./screens/SignIn/SignIn";
-import SignUp from "./screens/SignUp/SignUp";
+import SignIn from "./src/screens/SignIn/SignIn";
+import SignUp from "./src/screens/SignUp/SignUp";
 
-import Home from "./screens/Home/Home";
-import Profile from "./screens/Profile/Profile";
-import Recycle from "./screens/Recycle/Recycle";
-import Deposit from "./screens/Deposit/Deposit";
-import CarbonInfo from "./screens/CarbonInfo/CarbonInfo";
+import Home from "./src/screens/Home/Home";
+import Profile from "./src/screens/Profile/Profile";
+import Recycle from "./src/screens/Recycle/Recycle";
+import Deposit from "./src/screens/Deposit/Deposit";
+import CarbonInfo from "./src/screens/CarbonInfo/CarbonInfo";
 
-import AdminHome from "./screens/AdminHome/Adminhome";
-import UserSpace from "./screens/UserSpace/UserSpace";
-import Approve from "./screens/Approve/Approve";
+import AdminHome from "./src/screens/AdminHome/Adminhome";
+import UserSpace from "./src/screens/UserSpace/UserSpace";
+import Approve from "./src/screens/Approve/Approve";
 
 const Stack = createNativeStackNavigator();
 function App() {
