@@ -37,6 +37,19 @@ const SignUp = ({ navigation }) => {
       <TouchableOpacity style={styles.button} onPress={handleSignIn}>
         <Text>Sign Up</Text>
       </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate("SingIn");
+        }}
+      >
+        <Text>
+          Zaten hesabın var mı ?
+          <Text style={{ color: "green", fontWeight: "bold" }}>
+            {" "}
+            Giriş yap{" "}
+          </Text>
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };

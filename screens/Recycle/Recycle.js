@@ -4,6 +4,8 @@ import {
   FlatList,
   TouchableOpacity,
   TextInput,
+  KeyboardAvoidingView,
+  ScrollView,
 } from "react-native";
 import React, { useState } from "react";
 import styles from "./Recycle.style";
@@ -34,42 +36,15 @@ const Recycle = () => {
   const [inputName, setInputName] = React.useState();
 
   return (
-    <View style={styles.container}>
-      <View style={styles.mapCategories}>
-        {categories.map((item, index) => (
-          <View style={styles.item} key={index}>
-            <TouchableOpacity
-              style={styles.categoriesContainer}
-              onPress={() => {
-                setSelectedCategory(item.name);
-              }}
-            >
-              <Text>{item.name}</Text>
-            </TouchableOpacity>
-          </View>
-        ))}
-      </View>
-      <Text>{selectedCategory}</Text>
-      <TouchableOpacity
-        style={{ backgroundColor: "red", width: 50, alignSelf: "center" }}
-        onPress={() => {
-          setSubCategories([
-            { id: "0", name: "Kristal" },
-            { id: "1", name: "Şişe" },
-            { id: "2", name: "Bardak" },
-          ]);
-        }}
-      >
-        <Text>DEVAM</Text>
-      </TouchableOpacity>
-      {subCategories.length > 0 && (
+    <KeyboardAvoidingView style={styles.container}>
+      <ScrollView>
         <View style={styles.mapCategories}>
-          {subCategories.map((item, index) => (
+          {categories.map((item, index) => (
             <View style={styles.item} key={index}>
               <TouchableOpacity
                 style={styles.categoriesContainer}
                 onPress={() => {
-                  setSelectedSubCategory(item.name);
+                  setSelectedCategory(item.name);
                 }}
               >
                 <Text>{item.name}</Text>
@@ -77,32 +52,67 @@ const Recycle = () => {
             </View>
           ))}
         </View>
-      )}
-      <Text>{selectedSubCategory}</Text>
+        <Text>{selectedCategory}</Text>
+        <TouchableOpacity
+          style={{ backgroundColor: "red", width: 50, alignSelf: "center" }}
+          onPress={() => {
+            setSubCategories([
+              { id: "0", name: "Kristal" },
+              { id: "1", name: "Şişe" },
+              { id: "2", name: "Bardak" },
+            ]);
+          }}
+        >
+          <Text>DEVAM</Text>
+        </TouchableOpacity>
+        {subCategories.length > 0 && selectedCategory && (
+          <View style={styles.mapCategories}>
+            {subCategories.map((item, index) => (
+              <View style={styles.item} key={index}>
+                <TouchableOpacity
+                  style={styles.categoriesContainer}
+                  onPress={() => {
+                    setSelectedSubCategory(item.name);
+                  }}
+                >
+                  <Text>{item.name}</Text>
+                </TouchableOpacity>
+              </View>
+            ))}
+          </View>
+        )}
+        <Text>{selectedSubCategory}</Text>
 
-      {selectedSubCategory && (
-        <>
-          <TextInput
-            style={styles.input}
-            onChangeText={setInputName}
-            value={inputName}
-            placeholder={`${selectedSubCategory} Miktarını Giriniz: `}
-          />
-          <TouchableOpacity
-            style={{
-              backgroundColor: "lightgreen",
-              width: 100,
-              borderRadius: 20,
-              justifyContent: "center",
-              alignItems: "center",
-              alignSelf: "center",
-            }}
-          >
-            <Text>ONAYLA</Text>
-          </TouchableOpacity>
-        </>
-      )}
-    </View>
+        {selectedSubCategory && (
+          <>
+            <TextInput
+              style={styles.input}
+              onChangeText={setInputName}
+              value={inputName}
+              placeholder={`${selectedSubCategory} Miktarını Giriniz: `}
+              keyboardType="numeric"
+            />
+            <TouchableOpacity
+              style={{
+                backgroundColor: "lightgreen",
+                width: 100,
+                borderRadius: 20,
+                justifyContent: "center",
+                alignItems: "center",
+                alignSelf: "center",
+              }}
+              onPress={() => {
+                setSelectedCategory();
+                setSelectedSubCategory();
+                setInputName();
+              }}
+            >
+              <Text>ONAYLA</Text>
+            </TouchableOpacity>
+          </>
+        )}
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 };
 
