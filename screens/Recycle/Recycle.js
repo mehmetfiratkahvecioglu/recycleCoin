@@ -9,18 +9,28 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import styles from "./Recycle.style";
+import axios from "axios";
+
+//static sha
+const sha = "f905030c3f419fbe6a51a0a3b241f6cfb8858db77a0a9c91d7446159a369af92";
+const email = "mehmetfirat0707@hotmail.com";
 
 const categories = [
-  { id: "0", name: "Cam" },
-  { id: "1", name: "Plastik" },
-  { id: "2", name: "Kağıt" },
-  { id: "3", name: "Pil" },
-  { id: "4", name: "Alüminyum" },
-  { id: "5", name: "Demir" },
-  { id: "6", name: "Ahşap" },
-  { id: "7", name: "Beton" },
-  { id: "8", name: "Tekstil" },
-  { id: "8", name: "Elektronik" },
+  { id: "0", name: "Cam", get: "camTurleri", post: "camlar" },
+  { id: "1", name: "Plastik", get: "plastikTurleri", post: "plastikler" },
+  { id: "2", name: "Kağıt", get: "kagitTurleri", post: "kagitlar" },
+  { id: "3", name: "Pil", get: "pilTurleri", post: "piller" },
+  { id: "4", name: "Alüminyum", get: "aluminyumTurleri", post: "aluminyumlar" },
+  { id: "5", name: "Demir", get: "demirTurleri", post: "demirler" },
+  { id: "6", name: "Ahşap", get: "ahsapTurleri", post: "ahsaplar" },
+  { id: "7", name: "Beton", get: "betonTurleri", post: "betonlar" },
+  { id: "8", name: "Tekstil", get: "tekstilTurleri", post: "tekstiller" },
+  {
+    id: "8",
+    name: "Elektronik",
+    get: "elektronikTurleri",
+    post: "elektronikler",
+  },
 ];
 
 const subCategories = [
@@ -34,6 +44,8 @@ const Recycle = () => {
   const [subCategories, setSubCategories] = useState([]);
   const [selectedSubCategory, setSelectedSubCategory] = useState();
   const [inputName, setInputName] = React.useState();
+  const [selectedCategoryforPost, setselectedCategoryforPost] =
+    React.useState();
 
   return (
     <KeyboardAvoidingView style={styles.container}>
@@ -45,6 +57,18 @@ const Recycle = () => {
                 style={styles.categoriesContainer}
                 onPress={() => {
                   setSelectedCategory(item.name);
+                  setselectedCategoryforPost(item);
+                  console.log("get isteği buradan atılacak");
+                  axios
+
+                    .get(`http://192.168.1.34:3000/api/kategoriler/${item.get}`)
+                    .then(function (response) {
+                      console.log(response.data);
+                      setSubCategories(response.data);
+                    })
+                    .catch(function (error) {
+                      console.log(error);
+                    });
                 }}
               >
                 <Text>{item.name}</Text>
@@ -53,18 +77,7 @@ const Recycle = () => {
           ))}
         </View>
         <Text>{selectedCategory}</Text>
-        <TouchableOpacity
-          style={{ backgroundColor: "red", width: 50, alignSelf: "center" }}
-          onPress={() => {
-            setSubCategories([
-              { id: "0", name: "Kristal" },
-              { id: "1", name: "Şişe" },
-              { id: "2", name: "Bardak" },
-            ]);
-          }}
-        >
-          <Text>DEVAM</Text>
-        </TouchableOpacity>
+
         {subCategories.length > 0 && selectedCategory && (
           <View style={styles.mapCategories}>
             {subCategories.map((item, index) => (
@@ -72,10 +85,10 @@ const Recycle = () => {
                 <TouchableOpacity
                   style={styles.categoriesContainer}
                   onPress={() => {
-                    setSelectedSubCategory(item.name);
+                    setSelectedSubCategory(item.turu);
                   }}
                 >
-                  <Text>{item.name}</Text>
+                  <Text>{item.turu}</Text>
                 </TouchableOpacity>
               </View>
             ))}
@@ -102,6 +115,23 @@ const Recycle = () => {
                 alignSelf: "center",
               }}
               onPress={() => {
+                axios
+                  .post(
+                    `http://192.168.1.34:3000/api/${selectedCategoryforPost.post}`,
+                    {
+                      sha: sha,
+                      email: email,
+                      tur: selectedSubCategory,
+                      miktar: inputName,
+                    }
+                  )
+                  .then(function (response) {
+                    console.log(response.data);
+                  })
+                  .catch(function (error) {
+                    console.log(error);
+                  });
+
                 setSelectedCategory();
                 setSelectedSubCategory();
                 setInputName();
@@ -109,6 +139,9 @@ const Recycle = () => {
             >
               <Text>ONAYLA</Text>
             </TouchableOpacity>
+
+            <Text>{selectedCategoryforPost.post}</Text>
+            <Text>{selectedSubCategory}</Text>
           </>
         )}
       </ScrollView>

@@ -1,17 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, TextInput, TouchableOpacity, Text } from "react-native";
 import styles from "./SignIn.style";
-
+import axios from "axios";
 const SignIn = ({ navigation }) => {
   const [name, setName] = React.useState();
   const [password, setPassword] = React.useState();
+  const [token, setToken] = React.useState();
 
   const handleSignIn = () => {
-    /* role == "Normal"
-      ? navigation.navigate("Home")
-      : navigation.navigate("AdminHome");
-      */
+    console.log("çalışıyor");
+    axios
+      .post("http://192.168.1.34:3000/api/users/giris", {
+        email: name,
+        sifre: password,
+      })
+      .then(function (response) {
+        console.log(response.data.token);
+        setToken(response.data.token);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
+
+  useEffect(() => {
+    if (token) {
+      navigation.navigate("Home");
+    }
+  }, [token]);
 
   return (
     <View style={styles.container}>
@@ -19,7 +35,7 @@ const SignIn = ({ navigation }) => {
         style={styles.input}
         onChangeText={setName}
         value={name}
-        placeholder="Name"
+        placeholder="E-mail"
       />
       <TextInput
         style={styles.input}
