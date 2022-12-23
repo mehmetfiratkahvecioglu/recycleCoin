@@ -6,6 +6,7 @@ const SignUp = ({ navigation }) => {
   const [name, setName] = React.useState();
   const [password, setPassword] = React.useState();
   const [mail, setMail] = React.useState();
+  const [surName, setSurname] = React.useState();
   const handleSignIn = () => {
     /* role == "Normal"
       ? navigation.navigate("Home")
@@ -23,6 +24,12 @@ const SignUp = ({ navigation }) => {
       />
       <TextInput
         style={styles.input}
+        onChangeText={setSurname}
+        value={surName}
+        placeholder="SurName"
+      />
+      <TextInput
+        style={styles.input}
         onChangeText={setMail}
         value={mail}
         placeholder="e-Mail Adress"
@@ -34,6 +41,7 @@ const SignUp = ({ navigation }) => {
         placeholder="Password"
         secureTextEntry={true}
       />
+
       <TouchableOpacity style={styles.button} onPress={handleSignIn}>
         <Text>Sign Up</Text>
       </TouchableOpacity>
