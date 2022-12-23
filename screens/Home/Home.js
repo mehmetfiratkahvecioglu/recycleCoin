@@ -22,7 +22,7 @@ const Home = ({ navigation }) => {
       <Page
         name={"Carbon Information Page"}
         onPress={() => {
-          navigation.navigate("Info");
+          navigation.navigate("CarbonInfo");
         }}
       />
       <Page
