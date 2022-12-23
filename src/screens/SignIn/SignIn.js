@@ -5,23 +5,23 @@ import styles from "./SignIn.style";
 import axios from "axios";
 import useStore from "../../store/useStore";
 
-const bears = useStore((state) => state.bears);
-
 const SignIn = ({ navigation }) => {
   const [name, setName] = React.useState();
   const [password, setPassword] = React.useState();
   const [token, setToken] = React.useState();
 
+  const changeUserInfo = useStore((state) => state.changeUserInfo);
+
   const handleSignIn = () => {
-    console.log("çalışıyor");
     axios
       .post("http://192.168.1.34:3000/api/users/giris", {
         email: name,
         sifre: password,
       })
       .then(function (response) {
-        console.log(response.data.token);
+        console.log(response.data.user);
         setToken(response.data.token);
+        changeUserInfo(response.data.user);
       })
       .catch(function (error) {
         console.log(error);

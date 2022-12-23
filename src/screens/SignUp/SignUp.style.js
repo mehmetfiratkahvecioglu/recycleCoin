@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
     margin: 10,
     borderRadius: 50,
   },
-  toggleContainer: { width: screenWidth * 0.9, margin: 10 },
 });
 
 export default styles;

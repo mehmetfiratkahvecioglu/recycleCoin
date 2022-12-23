@@ -4,9 +4,17 @@ import React from "react";
 import Page from "../../components/Page/Page";
 import styles from "./Home.style";
 
+import useStore from "../../store/useStore";
+
 const Home = ({ navigation }) => {
+  const userInfo = useStore((state) => state.userInfo);
   return (
     <View style={styles.container}>
+      <Text>
+        {userInfo.isim}
+        {userInfo.soyisim}
+        {userInfo.coinMiktari}
+      </Text>
       <Page
         name={"Recycle Page"}
         onPress={() => {
