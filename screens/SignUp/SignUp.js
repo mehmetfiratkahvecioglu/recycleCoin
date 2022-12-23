@@ -1,6 +1,7 @@
 import React from "react";
 import { View, TextInput, TouchableOpacity, Text } from "react-native";
 import styles from "./SignUp.style";
+import axios from "axios";
 
 const SignUp = ({ navigation }) => {
   const [name, setName] = React.useState();
@@ -8,10 +9,20 @@ const SignUp = ({ navigation }) => {
   const [mail, setMail] = React.useState();
   const [surName, setSurname] = React.useState();
   const handleSignIn = () => {
-    /* role == "Normal"
-      ? navigation.navigate("Home")
-      : navigation.navigate("AdminHome");
-      */
+    console.log("çalışıyor");
+    axios
+      .post("http://localhost:3000/api/users", {
+        isim: name,
+        soyisim: surName,
+        email: mail,
+        sifre: password,
+      })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   return (
