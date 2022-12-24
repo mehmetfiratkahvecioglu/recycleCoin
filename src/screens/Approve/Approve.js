@@ -1,4 +1,11 @@
-import { View, Text, FlatList, TouchableOpacity, Image } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  Image,
+  ScrollView,
+} from "react-native";
 import React, { useState, useEffect } from "react";
 import styles from "./Approve.style";
 import useStore from "../../store/useStore";
@@ -98,6 +105,7 @@ const Approve = () => {
     React.useState();
 
   const [requests, setRequests] = useState([]);
+  const [isTouched, setIsTouched] = useState(false);
 
   const userToken = useStore((state) => state.userToken);
 
@@ -176,6 +184,8 @@ const Approve = () => {
               .catch(function (error) {
                 console.log(error);
               });
+
+            setIsTouched(!isTouched);
           }}
         >
           <Text style={{ fontSize: 12, fontWeight: "bold", color: "white" }}>
@@ -185,6 +195,25 @@ const Approve = () => {
       </View>
     </View>
   );
+
+  useEffect(() => {
+    axios
+
+      .get(`http://192.168.1.47:3000/api/${selectedCategoryforPost?.post}`, {
+        headers: {
+          Authorization: `Bearer ${userToken}`,
+        },
+      })
+      .then(function (response) {
+        console.log(response.data);
+        setRequests(response.data);
+        setSubCategories(response.data);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [isTouched]);
+  console.log("camlarrr: ", selectedCategoryforPost?.post);
   return (
     <View>
       <View style={styles.mapCategories}>
@@ -222,7 +251,9 @@ const Approve = () => {
           </View>
         ))}
       </View>
-      <FlatList data={requests} renderItem={renderItem} />
+      <View style={{ height: 450 }}>
+        <FlatList data={requests} renderItem={renderItem} />
+      </View>
     </View>
   );
 };
