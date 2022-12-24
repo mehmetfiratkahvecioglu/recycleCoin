@@ -17,14 +17,17 @@ const UserSpace = () => {
         padding: 10,
       }}
     >
-      <Text>İsim: {item.isim}</Text>
-      <Text>Soyisim: {item.soyisim}</Text>
-      <Text>Nick: {item.userName}</Text>
-      <Text>E-Mail: {item.email}</Text>
-      <Text>Karbon Miktarı: {item.karbonMiktari}</Text>
-      <Text>Coin Miktarı: {item.coinMiktari}</Text>
-      <Text>SHA256 Adresi: {item.sha}</Text>
-      <Text></Text>
+      <Text style={{ fontWeight: "bold" }}>İsim: {item.isim}</Text>
+      <Text style={{ fontWeight: "bold" }}>Soyisim: {item.soyisim}</Text>
+      <Text style={{ fontWeight: "bold" }}>Nick: {item.userName}</Text>
+      <Text style={{ fontWeight: "bold" }}>E-Mail: {item.email}</Text>
+      <Text style={{ fontWeight: "bold" }}>
+        Karbon Miktarı: {item.karbonMiktari}
+      </Text>
+      <Text style={{ fontWeight: "bold" }}>
+        Coin Miktarı: {item.coinMiktari}
+      </Text>
+      <Text style={{ fontWeight: "bold" }}>SHA256 Adresi: {item.sha}</Text>
     </TouchableOpacity>
   );
 

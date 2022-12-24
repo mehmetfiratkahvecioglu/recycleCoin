@@ -32,34 +32,34 @@ const SignUp = ({ navigation }) => {
         style={styles.input}
         onChangeText={setName}
         value={name}
-        placeholder="Name"
+        placeholder="İsminizi giriniz"
       />
       <TextInput
         style={styles.input}
         onChangeText={setSurname}
         value={surName}
-        placeholder="SurName"
+        placeholder="Soyisminizi giriniz"
       />
       <TextInput
         style={styles.input}
         onChangeText={setMail}
         value={mail}
-        placeholder="e-Mail Adress"
+        placeholder="e-Mail Adresinizi giriniz"
       />
       <TextInput
         style={styles.input}
         onChangeText={setPassword}
         value={password}
-        placeholder="Password"
+        placeholder="Şifrenizi Giriniz"
         secureTextEntry={true}
       />
 
       <TouchableOpacity style={styles.button} onPress={handleSignIn}>
-        <Text>Sign Up</Text>
+        <Text style={{ color: "white", fontWeight: "bold" }}>Sign Up</Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("SingIn");
+          navigation.navigate("SignIn");
         }}
       >
         <Text>

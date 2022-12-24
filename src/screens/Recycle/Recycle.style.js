@@ -54,6 +54,7 @@ const styles = StyleSheet.create({
     margin: 10,
     width: screenWidth * 0.9,
     padding: 5,
+    alignSelf: "center",
   },
   categoryText: { fontSize: 6, color: "rgba(39, 130, 100,1)" },
   subCategoryText: { fontSize: 10, color: "rgba(39, 130, 100,1)" },

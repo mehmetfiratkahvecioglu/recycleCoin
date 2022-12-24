@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { View, TextInput, TouchableOpacity, Text } from "react-native";
+import { View, TextInput, TouchableOpacity, Text, Image } from "react-native";
 import styles from "./SignIn.style";
 
 import axios from "axios";
@@ -44,21 +44,25 @@ const SignIn = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Image
+        style={styles.image}
+        source={require("../../assets/images/recycle.jpeg")}
+      />
       <TextInput
         style={styles.input}
         onChangeText={setName}
         value={name}
-        placeholder="E-mail"
+        placeholder="E-mail adresinizi giriniz"
       />
       <TextInput
         style={styles.input}
         onChangeText={setPassword}
         value={password}
-        placeholder="Password"
+        placeholder="Şifrenizi giriniz"
         secureTextEntry={true}
       />
       <TouchableOpacity style={styles.button} onPress={handleSignIn}>
-        <Text>Sign In</Text>
+        <Text style={{ color: "white", fontWeight: "bold" }}>Giriş Yap </Text>
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {

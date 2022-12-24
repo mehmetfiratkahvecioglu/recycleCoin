@@ -1,4 +1,4 @@
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import React from "react";
 import axios from "axios";
 import styles from "./Deposit.style";
@@ -12,6 +12,10 @@ const Deposit = () => {
 
   return (
     <View style={styles.container}>
+      <Image
+        style={styles.image}
+        source={require("../../assets/images/run.jpeg")}
+      />
       <TextInput
         style={styles.input}
         onChangeText={setCoinNumber}
@@ -47,7 +51,7 @@ const Deposit = () => {
             });
         }}
       >
-        <Text>Gönder</Text>
+        <Text style={{ color: "white", fontWeight: "bold" }}>Gönder</Text>
       </TouchableOpacity>
     </View>
   );

@@ -127,16 +127,30 @@ const CarbonInfo = () => {
           </View>
         ))}
       </View>
-
-      <FlatList
-        data={getResponse}
-        renderItem={({ item }) => (
-          <View>
-            <Text>{item.turu}</Text>
-            <Text>{item.karbonDegeri}</Text>
-          </View>
-        )}
-      />
+      <View style={{ height: 400 }}>
+        <FlatList
+          data={getResponse}
+          renderItem={({ item }) => (
+            <View
+              style={{
+                backgroundColor: "white",
+                margin: 10,
+                padding: 10,
+                borderRadius: 12,
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
+            >
+              <Text style={{ fontWeight: "bold", color: "green" }}>
+                {item.turu}
+              </Text>
+              <Text style={{ fontWeight: "bold", color: "green" }}>
+                Karbon Değeri: {item.karbonDegeri}
+              </Text>
+            </View>
+          )}
+        />
+      </View>
     </View>
   );
 };

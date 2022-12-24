@@ -27,27 +27,94 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {
-          /*!userInfo.token === "string" && (*/
-          <>
-            <Stack.Screen name="SingIn" component={SignIn} />
-            <Stack.Screen name="SingUp" component={SignUp} />
-          </>
-          /*)*/
-        }
-
-        <Stack.Screen
-          name="Home"
-          component={Home}
-          options={{ headerShown: false }}
-        />
-        <Stack.Screen name="Recycle" component={Recycle} />
-        <Stack.Screen name="Deposit" component={Deposit} />
-        <Stack.Screen name="CarbonInfo" component={CarbonInfo} />
-        <Stack.Screen name="Profile" component={Profile} />
-        <Stack.Screen name="AdminHome" component={AdminHome} />
-        <Stack.Screen name="UserSpace" component={UserSpace} />
-        <Stack.Screen name="Approve" component={Approve} />
+        <>
+          <Stack.Screen
+            name="SignIn"
+            component={SignIn}
+            options={{
+              title: "Recycle Coin",
+              headerTintColor: "rgba(39, 130, 100,1)",
+              headerTitleAlign: "center",
+            }}
+          />
+          <Stack.Screen
+            name="SingUp"
+            component={SignUp}
+            options={{
+              title: "Kayıt Ol",
+              headerTintColor: "rgba(39, 130, 100,1)",
+              headerTitleAlign: "center",
+            }}
+          />
+        </>
+        <>
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Recycle"
+            component={Recycle}
+            options={{
+              title: "Geri Dönüşüm Yap",
+              headerTintColor: "rgba(39, 130, 100,1)",
+              headerTitleAlign: "center",
+            }}
+          />
+          <Stack.Screen
+            name="Deposit"
+            component={Deposit}
+            options={{
+              title: "Coin Gönder",
+              headerTintColor: "rgba(39, 130, 100,1)",
+              headerTitleAlign: "center",
+            }}
+          />
+          <Stack.Screen
+            name="CarbonInfo"
+            component={CarbonInfo}
+            options={{
+              title: "Karbon Bilgileri",
+              headerTintColor: "rgba(39, 130, 100,1)",
+              headerTitleAlign: "center",
+            }}
+          />
+          <Stack.Screen
+            name="Profile"
+            component={Profile}
+            options={{
+              title: "Profil",
+              headerTintColor: "rgba(39, 130, 100,1)",
+              headerTitleAlign: "center",
+            }}
+          />
+        </>
+        <>
+          <Stack.Screen
+            name="AdminHome"
+            component={AdminHome}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="UserSpace"
+            component={UserSpace}
+            options={{
+              title: "Kullanıcı Uzayı",
+              headerTintColor: "rgba(39, 130, 100,1)",
+              headerTitleAlign: "center",
+            }}
+          />
+          <Stack.Screen
+            name="Approve"
+            component={Approve}
+            options={{
+              title: "Onay Sayfası",
+              headerTintColor: "rgba(39, 130, 100,1)",
+              headerTitleAlign: "center",
+            }}
+          />
+        </>
       </Stack.Navigator>
     </NavigationContainer>
   );
