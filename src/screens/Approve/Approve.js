@@ -152,7 +152,6 @@ const Approve = () => {
           <Text style={{ fontSize: 12, fontWeight: "bold", color: "white" }}>
             ONAYLA
           </Text>
-          <Text style={{ fontSize: 12, fontWeight: "bold" }}>{item._id}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={{
