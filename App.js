@@ -18,13 +18,21 @@ import AdminHome from "./src/screens/AdminHome/Adminhome";
 import UserSpace from "./src/screens/UserSpace/UserSpace";
 import Approve from "./src/screens/Approve/Approve";
 
+import useStore from "./src/store/useStore";
+
 const Stack = createNativeStackNavigator();
+
 function App() {
+  const userInfo = useStore((state) => state.userInfo);
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="SingIn" component={SignIn} />
-        <Stack.Screen name="SingUp" component={SignUp} />
+        {!userInfo.token === "string" && (
+          <>
+            <Stack.Screen name="SingIn" component={SignIn} />
+            <Stack.Screen name="SingUp" component={SignUp} />
+          </>
+        )}
 
         <Stack.Screen
           name="Home"

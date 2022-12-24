@@ -81,7 +81,7 @@ const categories = [
     imageSource: require("../../assets/images/knit3.png"),
   },
   {
-    id: "8",
+    id: "9",
     name: "Elektronik",
     get: "elektronikTurleri",
     post: "elektronikler",
