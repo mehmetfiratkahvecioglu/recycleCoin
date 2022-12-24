@@ -12,6 +12,7 @@ const SignIn = ({ navigation }) => {
   const [isAdmin, setIsAdmin] = React.useState();
 
   const changeUserInfo = useStore((state) => state.changeUserInfo);
+  const changeUserToken = useStore((state) => state.changeUserToken);
 
   const handleSignIn = () => {
     axios
@@ -23,6 +24,7 @@ const SignIn = ({ navigation }) => {
         setIsAdmin(response.data.user.isAdmin);
         setToken(response.data.token);
         changeUserInfo(response.data.user);
+        changeUserToken(response.data.token);
       })
       .catch(function (error) {
         console.log(error);
