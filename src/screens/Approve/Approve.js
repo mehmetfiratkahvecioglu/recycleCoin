@@ -155,6 +155,25 @@ const Approve = () => {
               .catch(function (error) {
                 console.log(error);
               });
+
+            axios
+
+              .delete(
+                `http://192.168.1.47:3000/api/${selectedCategoryforPost?.post}/${item._id}`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${userToken}`,
+                  },
+                }
+              )
+              .then(function (response) {
+                console.log(response);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+
+            setIsTouched(!isTouched);
           }}
         >
           <Text style={{ fontSize: 12, fontWeight: "bold", color: "white" }}>
