@@ -160,6 +160,24 @@ const Approve = () => {
             padding: 10,
             borderRadius: 12,
           }}
+          onPress={() => {
+            axios
+
+              .delete(
+                `http://192.168.1.47:3000/api/${selectedCategoryforPost?.post}/${item._id}`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${userToken}`,
+                  },
+                }
+              )
+              .then(function (response) {
+                console.log(response);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          }}
         >
           <Text style={{ fontSize: 12, fontWeight: "bold", color: "white" }}>
             REDDET
