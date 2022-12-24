@@ -11,7 +11,7 @@ const SignUp = ({ navigation }) => {
   const handleSignIn = () => {
     console.log("çalışıyor");
     axios
-      .post("http://192.168.1.34:3000/api/users", {
+      .post("http://192.168.1.47:3000/api/users", {
         isim: name,
         soyisim: surName,
         email: mail,

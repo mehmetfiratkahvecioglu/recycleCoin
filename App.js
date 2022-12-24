@@ -26,7 +26,11 @@ function App() {
         <Stack.Screen name="SingIn" component={SignIn} />
         <Stack.Screen name="SingUp" component={SignUp} />
 
-        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="Recycle" component={Recycle} />
         <Stack.Screen name="Deposit" component={Deposit} />
         <Stack.Screen name="CarbonInfo" component={CarbonInfo} />

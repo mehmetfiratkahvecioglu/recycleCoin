@@ -14,7 +14,7 @@ const SignIn = ({ navigation }) => {
 
   const handleSignIn = () => {
     axios
-      .post("http://192.168.1.34:3000/api/users/giris", {
+      .post("http://192.168.1.47:3000/api/users/giris", {
         email: name,
         sifre: password,
       })

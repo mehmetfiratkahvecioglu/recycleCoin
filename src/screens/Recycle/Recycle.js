@@ -117,7 +117,7 @@ const Recycle = () => {
                   console.log("get isteği buradan atılacak");
                   axios
 
-                    .get(`http://192.168.1.34:3000/api/kategoriler/${item.get}`)
+                    .get(`http://192.168.1.47:3000/api/kategoriler/${item.get}`)
                     .then(function (response) {
                       console.log(response.data);
                       setSubCategories(response.data);
@@ -177,7 +177,7 @@ const Recycle = () => {
               onPress={() => {
                 axios
                   .post(
-                    `http://192.168.1.34:3000/api/${selectedCategoryforPost.post}`,
+                    `http://192.168.1.47:3000/api/${selectedCategoryforPost.post}`,
                     {
                       sha: sha,
                       email: email,
