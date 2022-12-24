@@ -120,15 +120,22 @@ const Approve = () => {
         padding: 10,
       }}
     >
-      <View style={{ flexDirection: "row", justifyContent: "space-around" }}>
-        <Text style={{ fontSize: 12, fontWeight: "bold" }}>{item.email}</Text>
-        <Text style={{ fontSize: 12, fontWeight: "bold" }}>{item.tur}</Text>
-        <Text style={{ fontSize: 12, fontWeight: "bold" }}>{item.miktar}</Text>
-      </View>
       <View
         style={{
           flexDirection: "row",
           justifyContent: "space-around",
+          marginBottom: 10,
+        }}
+      >
+        <Text style={{ fontSize: 12, fontWeight: "bold" }}>{item.email}</Text>
+        <Text style={{ fontSize: 12, fontWeight: "bold" }}>
+          {item.miktar} adet {item.tur}
+        </Text>
+      </View>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-evenly",
           borderRadius: 12,
         }}
       >
