@@ -106,7 +106,6 @@ const Recycle = () => {
   return (
     <KeyboardAvoidingView style={styles.container}>
       <ScrollView>
-        <Text>{userInfo.userName}</Text>
         <View style={styles.mapCategories}>
           {categories.map((item, index) => (
             <View style={styles.item} key={index}>
