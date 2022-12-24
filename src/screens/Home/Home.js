@@ -189,7 +189,9 @@ const Home = ({ navigation }) => {
           <View style={styles.item2} key={index}>
             <TouchableOpacity
               style={styles.categoriesContainer}
-              onPress={() => {}}
+              onPress={() => {
+                navigation.navigate("Recycle");
+              }}
             >
               <Image
                 style={{ width: 20, height: 20, tintColor: "green" }}

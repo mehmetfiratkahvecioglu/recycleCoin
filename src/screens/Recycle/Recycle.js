@@ -11,10 +11,8 @@ import {
 import React, { useState } from "react";
 import styles from "./Recycle.style";
 import axios from "axios";
-
+import useStore from "../../store/useStore";
 //static sha
-const sha = "f905030c3f419fbe6a51a0a3b241f6cfb8858db77a0a9c91d7446159a369af92";
-const email = "mehmetfirat0707@hotmail.com";
 
 const categories = [
   {
@@ -103,6 +101,8 @@ const Recycle = () => {
   const [selectedCategoryforPost, setselectedCategoryforPost] =
     React.useState();
 
+  const userInfo = useStore((state) => state.userInfo);
+
   return (
     <KeyboardAvoidingView style={styles.container}>
       <ScrollView>
@@ -131,15 +131,14 @@ const Recycle = () => {
                   style={{ width: 20, height: 20, tintColor: "green" }}
                   source={item.imageSource}
                 />
-                <Text>{item.name}</Text>
+                <Text style={styles.categoryText}>{item.name}</Text>
               </TouchableOpacity>
             </View>
           ))}
         </View>
-        <Text>{selectedCategory}</Text>
 
         {subCategories.length > 0 && selectedCategory && (
-          <View style={styles.mapCategories}>
+          <View style={styles.mapSubCategories}>
             {subCategories.map((item, index) => (
               <View style={styles.item} key={index}>
                 <TouchableOpacity
@@ -148,13 +147,14 @@ const Recycle = () => {
                     setSelectedSubCategory(item.turu);
                   }}
                 >
-                  <Text>{item.turu}</Text>
+                  <Text style={styles.subCategoryText} numberOfLines={1}>
+                    {item.turu}
+                  </Text>
                 </TouchableOpacity>
               </View>
             ))}
           </View>
         )}
-        <Text>{selectedSubCategory}</Text>
 
         {selectedSubCategory && (
           <>
@@ -173,14 +173,15 @@ const Recycle = () => {
                 justifyContent: "center",
                 alignItems: "center",
                 alignSelf: "center",
+                padding: 8,
               }}
               onPress={() => {
                 axios
                   .post(
                     `http://192.168.1.47:3000/api/${selectedCategoryforPost.post}`,
                     {
-                      sha: sha,
-                      email: email,
+                      sha: userInfo.sha,
+                      email: userInfo.email,
                       tur: selectedSubCategory,
                       miktar: inputName,
                     }
@@ -197,11 +198,8 @@ const Recycle = () => {
                 setInputName();
               }}
             >
-              <Text>ONAYLA</Text>
+              <Text style={{ fontWeight: "bold" }}>ONAYLA</Text>
             </TouchableOpacity>
-
-            <Text>{selectedCategoryforPost.post}</Text>
-            <Text>{selectedSubCategory}</Text>
           </>
         )}
       </ScrollView>
