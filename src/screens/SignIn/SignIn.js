@@ -9,6 +9,7 @@ const SignIn = ({ navigation }) => {
   const [name, setName] = React.useState();
   const [password, setPassword] = React.useState();
   const [token, setToken] = React.useState();
+  const [isAdmin, setIsAdmin] = React.useState();
 
   const changeUserInfo = useStore((state) => state.changeUserInfo);
 
@@ -19,7 +20,7 @@ const SignIn = ({ navigation }) => {
         sifre: password,
       })
       .then(function (response) {
-        console.log(response.data.user);
+        setIsAdmin(response.data.user.isAdmin);
         setToken(response.data.token);
         changeUserInfo(response.data.user);
       })
@@ -30,7 +31,12 @@ const SignIn = ({ navigation }) => {
 
   useEffect(() => {
     if (token) {
-      navigation.navigate("Home");
+      console.log();
+      if (isAdmin) {
+        navigation.navigate("AdminHome");
+      } else {
+        navigation.navigate("Home");
+      }
     }
   }, [token]);
 

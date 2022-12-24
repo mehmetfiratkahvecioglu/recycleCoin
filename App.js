@@ -27,12 +27,14 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {!userInfo.token === "string" && (
+        {
+          /*!userInfo.token === "string" && (*/
           <>
             <Stack.Screen name="SingIn" component={SignIn} />
             <Stack.Screen name="SingUp" component={SignUp} />
           </>
-        )}
+          /*)*/
+        }
 
         <Stack.Screen
           name="Home"
