@@ -3,14 +3,6 @@ import React, { useEffect, useState } from "react";
 import useStore from "../../store/useStore";
 
 import axios from "axios";
-const carbonValues = [
-  { id: "0", name: "yusuf" },
-  { id: "1", name: "kamil" },
-  { id: "2", name: "hasan" },
-  { id: "3", name: "bora" },
-  { id: "4", name: "sdfdsf" },
-  { id: "5", name: "xxxx" },
-];
 
 const UserSpace = () => {
   const [users, setUSers] = useState([]);
