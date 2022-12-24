@@ -126,10 +126,33 @@ const Approve = () => {
       >
         <TouchableOpacity
           style={{ backgroundColor: "green", padding: 10, borderRadius: 12 }}
+          onPress={() => {
+            axios
+              .patch(
+                `http://192.168.1.47:3000/api/users/${item.userName}`,
+                {
+                  karbonMiktari: item.toplamKarbon,
+                },
+                {
+                  headers: {
+                    Authorization: `Bearer ${userToken}`,
+                  },
+                }
+              )
+              .then(function (response) {
+                console.log("başarılı", item.userName, item.toplamKarbon);
+                console.log(response.data);
+                console.log("id", item._id);
+              })
+              .catch(function (error) {
+                console.log(error);
+              });
+          }}
         >
           <Text style={{ fontSize: 12, fontWeight: "bold", color: "white" }}>
             ONAYLA
           </Text>
+          <Text style={{ fontSize: 12, fontWeight: "bold" }}>{item._id}</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={{
