@@ -5,11 +5,12 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
+  Button,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import styles from "./Approve.style";
 import useStore from "../../store/useStore";
-
+import Modal from "react-native-modal";
 import axios from "axios";
 
 const carbonValues = [
@@ -107,17 +108,53 @@ const Approve = () => {
   const [requests, setRequests] = useState([]);
   const [isTouched, setIsTouched] = useState(false);
 
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [clickedUser, setClickedUser] = useState("");
+  const [requestNumber, setRequestNumber] = useState(0);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
   const userToken = useStore((state) => state.userToken);
 
   console.log("Tokenn:", userToken);
 
   const renderItem = ({ item }) => (
-    <View
+    <TouchableOpacity
       style={{
         backgroundColor: "white",
         margin: 5,
         borderRadius: 12,
         padding: 10,
+      }}
+      onPress={() => {
+        axios
+
+          .get(
+            `http://192.168.1.47:3000/api/${selectedCategoryforPost?.post}/${item.email}`,
+            {
+              headers: {
+                Authorization: `Bearer ${userToken}`,
+              },
+            }
+          )
+          .then(function (response) {
+            console.log("saaa");
+            console.log(
+              "isteğe tıklanınca gelen response ***** * * * *  :",
+              response.data.length
+            );
+            console.log(selectedCategoryforPost?.post);
+            console.log(item.sha);
+            setRequestNumber(response.data.length);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        console.log("tıklandı");
+        setClickedUser(item.userName);
+        toggleModal();
       }}
     >
       <View
@@ -219,7 +256,7 @@ const Approve = () => {
           </Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 
   useEffect(() => {
@@ -259,7 +296,10 @@ const Approve = () => {
                     },
                   })
                   .then(function (response) {
-                    console.log(response.data);
+                    console.log(
+                      "gelen requestlerrrr: :::: ******",
+                      response.data
+                    );
                     setRequests(response.data);
                     setSubCategories(response.data);
                   })
@@ -280,8 +320,41 @@ const Approve = () => {
       <View style={{ height: 450 }}>
         <FlatList data={requests} renderItem={renderItem} />
       </View>
+      <Modal
+        isVisible={isModalVisible}
+        onBackdropPress={() => setModalVisible(false)}
+      >
+        <View
+          style={{
+            flex: 1,
+            alignItems: "center",
+            justifyContent: "center",
+            backgroundColor: "white",
+
+            borderRadius: 12,
+            alignSelf: "center",
+            marginTop: 100,
+            marginBottom: 200,
+            padding: 50,
+          }}
+        >
+          <Text
+            style={{
+              fontWeight: "bold",
+              margin: 10,
+              color: "green",
+              fontSize: 14,
+            }}
+          >
+            {clickedUser} isimli kullanıcının istek Sayısı : {requestNumber}
+          </Text>
+
+          <Button title="Tamam" onPress={() => setModalVisible(false)} />
+        </View>
+      </Modal>
     </View>
   );
 };
 
 export default Approve;
+//fontSize:20
